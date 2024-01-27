@@ -11,7 +11,8 @@ import banco
 
 
 
-
+num = 0
+nome = ''
 listas = ('ssimSSIMyyesYESY')
 listan = ('nnãonaoN')
 
@@ -138,58 +139,63 @@ def gen(pessoa, genero):
         return f'o senhor {pessoa}, o mesmo'
 
 def acao_eventoCallback():
-    #Salva o numero
+    global num, nome
+
+     #Salva o numero
     pg.hotkey('ctrl', 'c')
     num = pyperclip.paste()
-    #salva nome
-    pg.hotkey('winleft', 'v')
-    time.sleep(3)
-    nome = pyperclip.paste()
-    
-    
-    pyperclip.copy(f"""CALLBACK REALIZADO COM SUCESSO. 
-Em contato por telefone ({num}) com o/a Sr/Sra. {nome} o mesmo validou a solução do chamado. Sendo assim, autorizou o encerramento do chamado.
-Prezado(a), Sua opinião nos ajudará a melhorar ainda mais nossos serviços e qualidade no atendimento, portanto será enviado um SMS/E-mail com nossa pesquisa de satisfação para que avalie, desde já agradecemos!""")    
-    
-    
+
     #Entra em atividades em atualizar status
     pg.hotkey('alt', 't')
     pg.press('down')
     pg.press('up')
     pg.press('enter')
-    time.sleep(2)
+    #aperta windows + V
+    pg.hotkey('winleft', 'v')
+    #espera o click
+    time.sleep(1)
+    
+      
     
     #coloca fechado no status
     for i in range(2): pg.press('up')
     
     #Cola o codigo na descrição do usuario
     for i in range(5): pg.press('tab')
+    
+    #salva nome
+    nome = pyperclip.paste() 
+    pyperclip.copy(f"""CALLBACK REALIZADO COM SUCESSO. 
+Em contato por telefone ({num}) com o/a Sr/Sra. {nome}, o mesmo validou a solução do chamado. Sendo assim, autorizou o encerramento do chamado.
+Prezado(a), Sua opinião nos ajudará a melhorar ainda mais nossos serviços e qualidade no atendimento, portanto será enviado um SMS/E-mail com nossa pesquisa de satisfação para que avalie, desde já agradecemos!""")
     pg.hotkey('ctrl', 'v')
     
-    evento_RepeteCallback(num,nome)
+    evento_notificaCallback()
 
 
-def acao_repete(num,nome):    
-    pyperclip.copy(f"""CALLBACK REALIZADO COM SUCESSO. 
-    Em contato por telefone ({num}) com o/a Sr/Sra. {nome} o mesmo validou a solução do chamado.
-    Sendo assim, autorizou o encerramento do chamado.
-    Prezado(a),
-    Sua opinião nos ajudará a melhorar ainda mais nossos serviços e qualidade no atendimento, portanto será enviado um SMS/E-mail com nossa pesquisa de satisfação para que avalie, desde já agradecemos!""")
+def acao_repete():
+    global num, nome  
     time.sleep(1)
     #Entra em atividades em atualizar status
     pg.hotkey('alt', 't')
     pg.press('down')
     pg.press('up')
     pg.press('enter')
-    time.sleep(2)
+    time.sleep(1)
     
     #coloca fechado no status
     for i in range(2): pg.press('up')
     
     #Cola o codigo na descrição do usuario
     for i in range(5): pg.press('tab')
+    
+    pyperclip.copy(f"""CALLBACK REALIZADO COM SUCESSO. 
+Em contato por telefone ({num}) com o/a Sr/Sra. {nome}, o mesmo validou a solução do chamado.
+Sendo assim, autorizou o encerramento do chamado.
+Prezado(a),
+    Sua opinião nos ajudará a melhorar ainda mais nossos serviços e qualidade no atendimento, portanto será enviado um SMS/E-mail com nossa pesquisa de satisfação para que avalie, desde já agradecemos!""")
     pg.hotkey('ctrl', 'v')
-    evento_notificaCallback()
+    evento_RepeteCallback()
     
     
     #pergunta se existe outro chamado para mesma pessoa
@@ -201,12 +207,12 @@ def evento_notificaCallback():
             acao_eventoCallback()  # Executar a ação desejada
             keyboard.wait(teclas_combinacao[0])
             
-def evento_RepeteCallback(num,nome):
+def evento_RepeteCallback():
     teclas_combinacao = ['ctrl', '2']
     while True:
         # Verificar se todas as teclas da combinação estão pressionadas
         if all(keyboard.is_pressed(tecla) for tecla in teclas_combinacao):
-            acao_repete(num,nome)  # Executar a ação desejada
+            acao_repete()  # Executar a ação desejada
             keyboard.wait(teclas_combinacao[0])
 
 

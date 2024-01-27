@@ -1,4 +1,4 @@
-('C:\\Users\\guilb\\OneDrive\\Documents\\DescricoesV3\\build\\Executa '
+('C:\\Users\\guilb\\OneDrive\\Documents\\DescricoesV4\\build\\Executa '
  'Tarefas\\PYZ-00.pyz',
  [('__future__',
    'C:\\Users\\guilb\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\__future__.py',
@@ -133,7 +133,7 @@
    'C:\\Users\\guilb\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\windows_utils.py',
    'PYMODULE'),
   ('banco',
-   'C:\\Users\\guilb\\OneDrive\\Documents\\DescricoesV3\\banco.py',
+   'C:\\Users\\guilb\\OneDrive\\Documents\\DescricoesV4\\banco.py',
    'PYMODULE'),
   ('base64',
    'C:\\Users\\guilb\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\base64.py',
