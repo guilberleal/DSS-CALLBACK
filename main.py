@@ -22,9 +22,8 @@ def comecar():
                                                                   Sugestões de Melhorias nas descrições de chamados
                         
      Informe o tipo de script que deseja gerar.
-    1 = Adicionar 0
-    2 = Tentativa de contato
-    3 = Encerramento após 3 tentativas
+    1 = Tentativa de contato
+    2 = Encerramento após 3 tentativas
           
     """)
 
@@ -35,17 +34,9 @@ def comecar():
 def analise_script(tiposc):
     
     if tiposc == '1':
-        numero = str(input(' Número de contato:'))
-        os.system('cls') or None
-        texto = (f'0{numero}')
-        print(texto)
-        colar(texto)
-        return comecar()
-
-    elif tiposc == '2':
         return tentativa()
        
-    elif tiposc == '3':
+    elif tiposc == '2':
         return encerramento3()
 
     elif tiposc == 'sair':
@@ -62,7 +53,9 @@ def tentativa():
     
     num = pyperclip.paste()
     
-    pyperclip.copy(f"""Tentativa de contato com solicitante através do telefone: {num} que foi informado no chamado. A ligação chamou até cair/caiu na caixa postal.""")
+    pyperclip.copy(f"""Registrar comentário: Tentativa de contato com solicitante através do telefone: {num} que foi informado no chamado. A ligação chamou até cair/caiu na caixa postal.
+
+Caso tenha outro número de telefone fixo/celular para entrarmos em contato, favor informar.""")
     
     return comecar()
 
@@ -73,10 +66,8 @@ def encerramento3():
     os.system('cls') or None
     texto = (f"""Prezado cliente,
 O chamado/ticket {numero} está sendo encerrado por falta de contato, após 3 
-tentativas por telefone {num}, e 3 notificações enviados ao e-mail {email}, para atendermos 
-ao seu chamado/ticket.
-Sendo assim, havendo o interesse deverá abrir um novo chamado/ticket, renovando-se todos 
-os prazos de atendimento.
+tentativas por telefone {num}, e 3 notificações enviados ao e-mail {email}, para atendermos ao seu chamado/ticket.
+Sendo assim, havendo o interesse deverá abrir um novo chamado/ticket, renovando-se todos os prazos de atendimento.
 Caso o problema persista abra um novo chamado/ticket.
 Atenciosamente.
 Central de atendimento CTI- 3617-3900.""")
@@ -129,9 +120,15 @@ def acao_eventoCallback():
     
     #salva nome
     nome = pyperclip.paste() 
-    pyperclip.copy(f"""CALLBACK REALIZADO COM SUCESSO. 
-Em contato por telefone ({num}) com o/a Sr/Sra. {nome}, o mesmo validou a solução do chamado. Sendo assim, autorizou o encerramento do chamado.
-Prezado(a), Sua opinião nos ajudará a melhorar ainda mais nossos serviços e qualidade no atendimento, portanto será enviado um SMS/E-mail com nossa pesquisa de satisfação para que avalie, desde já agradecemos!""")
+    pyperclip.copy(f"""CALLBACK REALIZADO COM SUCESSO. Telefone de Contato: {num}. 
+
+    Prezado(a), {nome} 
+
+    Agradecemos por permitir-nos atender às suas necessidades com sucesso. Sua opinião é extremamente valiosa para nós, pois nos ajuda a melhorar continuamente nossos serviços e a qualidade do atendimento. 
+
+    Em breve, você receberá um SMS ou e-mail contendo nossa pesquisa de satisfação. Por favor, reserve um momento para nos fornecer seu feedback. Desde já, agradecemos pela sua colaboração! 
+
+    Atenciosamente.""")
     pg.hotkey('ctrl', 'v')
     
     evento_notificaCallback()
@@ -153,11 +150,15 @@ def acao_repete():
     #Cola o codigo na descrição do usuario
     for i in range(5): pg.press('tab')
     
-    pyperclip.copy(f"""CALLBACK REALIZADO COM SUCESSO. 
-Em contato por telefone ({num}) com o/a Sr/Sra. {nome}, o mesmo validou a solução do chamado.
-Sendo assim, autorizou o encerramento do chamado.
-Prezado(a),
-    Sua opinião nos ajudará a melhorar ainda mais nossos serviços e qualidade no atendimento, portanto será enviado um SMS/E-mail com nossa pesquisa de satisfação para que avalie, desde já agradecemos!""")
+    pyperclip.copy(f"""CALLBACK REALIZADO COM SUCESSO. Telefone de Contato: {num}. 
+
+    Prezado(a), {nome} 
+
+    Agradecemos por permitir-nos atender às suas necessidades com sucesso. Sua opinião é extremamente valiosa para nós, pois nos ajuda a melhorar continuamente nossos serviços e a qualidade do atendimento. 
+
+    Em breve, você receberá um SMS ou e-mail contendo nossa pesquisa de satisfação. Por favor, reserve um momento para nos fornecer seu feedback. Desde já, agradecemos pela sua colaboração! 
+
+    Atenciosamente. """)
     pg.hotkey('ctrl', 'v')
     evento_RepeteCallback()
     
