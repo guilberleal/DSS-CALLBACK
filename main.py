@@ -53,7 +53,7 @@ def tentativa():
     
     num = pyperclip.paste()
     
-    pyperclip.copy(f"""Registrar comentário: Tentativa de contato com solicitante através do telefone: {num} que foi informado no chamado. A ligação chamou até cair/caiu na caixa postal.
+    pyperclip.copy(f"""Tentativa de contato com solicitante através do telefone: {num} que foi informado no chamado. A ligação chamou até cair/caiu na caixa postal.
 
 Caso tenha outro número de telefone fixo/celular para entrarmos em contato, favor informar.""")
     
@@ -122,13 +122,13 @@ def acao_eventoCallback():
     nome = pyperclip.paste() 
     pyperclip.copy(f"""CALLBACK REALIZADO COM SUCESSO. Telefone de Contato: {num}. 
 
-    Prezado(a), {nome} 
+Prezado(a), {nome} 
 
-    Agradecemos por permitir-nos atender às suas necessidades com sucesso. Sua opinião é extremamente valiosa para nós, pois nos ajuda a melhorar continuamente nossos serviços e a qualidade do atendimento. 
+Agradecemos por permitir-nos atender às suas necessidades com sucesso. Sua opinião é extremamente valiosa para nós, pois nos ajuda a melhorar continuamente nossos serviços e a qualidade do atendimento. 
 
-    Em breve, você receberá um SMS ou e-mail contendo nossa pesquisa de satisfação. Por favor, reserve um momento para nos fornecer seu feedback. Desde já, agradecemos pela sua colaboração! 
+Em breve, você receberá um SMS ou e-mail contendo nossa pesquisa de satisfação. Por favor, reserve um momento para nos fornecer seu feedback. Desde já, agradecemos pela sua colaboração! 
 
-    Atenciosamente.""")
+Atenciosamente.""")
     pg.hotkey('ctrl', 'v')
     
     evento_notificaCallback()
